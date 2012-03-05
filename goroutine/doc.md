@@ -26,39 +26,39 @@ Features
 Output
 ------
 
-What to expect from a 6 Core system with stress=true: 
-$ time ./goroutine
-goroutine running, this may take a while...
-starting 6 goroutines in total
-goroutine[1] started
-goroutine[2] started
-cpu_hog called with n = 1, maxj = 81
-cpu_hog called with n = 2, maxj = 87
-goroutine[6] started
-cpu_hog called with n = 6, maxj = 47
-goroutine[3] started
-goroutine[4] started
-goroutine[5] started
-cpu_hog called with n = 4, maxj = 81
-cpu_hog called with n = 5, maxj = 18
-cpu_hog called with n = 3, maxj = 59
-cpu_hog exited with n = 5
-received(50)
-cpu_hog exited with n = 6
-received(60)
-cpu_hog exited with n = 3
-received(30)
-cpu_hog exited with n = 1
-received(10)
-cpu_hog exited with n = 4
-received(40)
-cpu_hog exited with n = 2
-received(20)
-goroutine finish
-
-real	0m28.340s
-user	2m2.620s
-sys	0m0.010s
+	What to expect from a 6 Core system with stress=true: 
+	$ time ./goroutine
+	goroutine running, this may take a while...
+	starting 6 goroutines in total
+	goroutine[1] started
+	goroutine[2] started
+	cpu_hog called with n = 1, maxj = 81
+	cpu_hog called with n = 2, maxj = 87
+	goroutine[6] started
+	cpu_hog called with n = 6, maxj = 47
+	goroutine[3] started
+	goroutine[4] started
+	goroutine[5] started
+	cpu_hog called with n = 4, maxj = 81
+	cpu_hog called with n = 5, maxj = 18
+	cpu_hog called with n = 3, maxj = 59
+	cpu_hog exited with n = 5
+	received(50)
+	cpu_hog exited with n = 6
+	received(60)
+	cpu_hog exited with n = 3
+	received(30)
+	cpu_hog exited with n = 1
+	received(10)
+	cpu_hog exited with n = 4
+	received(40)
+	cpu_hog exited with n = 2
+	received(20)
+	goroutine finish
+	
+	real	0m28.340s
+	user	2m2.620s
+	sys	0m0.010s
 
 	If you use $ xtime ./goroutine the last lines may be similar to :
 	122.62u 0.00s 28.34r 4752kB ./goroutine
@@ -90,19 +90,6 @@ the result that CPU time may be near zero :
     0.01u 0.00s 40.01r 5232kB ./goroutine
 
 INFO: user time is the total of all cores.  Real time is wallclock.
-
-Verison A
----------
-Leaves too many goroutines unterminated at end of for loop because synker is blocked
-
-Version B
----------
-Adds select statement to clean up goroutines on-the-fly
-
-
-Version C
----------
-Uses sync.WaitGroup to achieve same goal as B, hides implementation details.
 
 License
 -------
