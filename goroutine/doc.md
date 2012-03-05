@@ -77,11 +77,8 @@ Once the function compeletes we increment the throttle channel to indicate a CPU
 is available again.
 
 When the process winds down we have to insure we wait till all the goroutines 
-we created in the loop have time to finish.
-
-The synker channel does that by marking the goroutines that have 
-sent their completion signal.  The waitfor > 0 loop blocks until there's nothing
-left to wait for and then we're finished.
+we created in the loop have time to finish.  The wg.Wait() blocks until all the
+goroutines still running have completed.
 
 If you want to test synchronization but don't want to stress-test your CPU change
 the stress variable in cpu_hog() to false.  This will substitute time.Sleep() with
