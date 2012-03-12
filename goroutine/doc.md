@@ -22,6 +22,7 @@ Features
 
 *   About 70 lines of code.
 
+*   Comments or questions to hotei1352@gmail.com
 
 Output
 ------
