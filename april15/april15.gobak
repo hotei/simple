@@ -1,0 +1,139 @@
+// april15.go
+/*
+Result:
+	mdr@Odin:~/Desktop/MYGO/src/april15$ xtime ./april15
+	april15.go starting
+	W2s on file(1000000)  W2s processed(1000000)
+	999471 different people sent in W2s
+	april15.go finished
+	3.47u 0.58s 24.00r 3846304kB ./april15
+
+	mdr@Odin:~$ ulimit -a
+	core file size          (blocks, -c) 0
+	data seg size           (kbytes, -d) unlimited
+	scheduling priority             (-e) 20
+	file size               (blocks, -f) unlimited
+	pending signals                 (-i) 16382
+	max locked memory       (kbytes, -l) 64
+	max memory size         (kbytes, -m) unlimited
+	open files                      (-n) 1024
+	pipe size            (512 bytes, -p) 8
+	POSIX message queues     (bytes, -q) 819200
+	real-time priority              (-r) 0
+	stack size              (kbytes, -s) 8192
+	cpu time               (seconds, -t) unlimited
+	max user processes              (-u) unlimited
+	virtual memory          (kbytes, -v) unlimited
+	file locks                      (-x) unlimited
+	
+	
+	mdr@Odin:~/Desktop/MYGO/src/april15$ file april15
+	april15: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), 
+		statically linked, not stripped
+	
+	NOTE: 
+		I put the sleep(20) at end so I can look at process' memory tables 
+			while program is still running.  Otherwise it's gone too quick to see.
+	
+		This is a CONTRIVED example that is constructed to FORCE a problem.
+		I could always refactor the code to avoid the problem.  That's easy.
+		But ... I want to understand why this code is breaking.  
+		Is it GO or is it Ubuntu that's killing it.
+		It compiles, but gets signal for 'kill -9' even before init() runs. 
+		
+	QUESTIONS:
+	1	Why does xtime say 3.8e+9 bytes used?  (using only W2 array)
+			I only allocate 1e+9 (roughly) per large array
+			Ubuntu 11.04 'Processes' table says RAM use is 936 MiB
+			
+		Adding the 1099 array doubles RAM use to 1.9 Gib - thats expected.
+		
+	2	Why does adding the taxpayer1040 table result in a good compile but 
+		this error at runtime:
+		
+		mdr@Odin:~/Desktop/MYGO/src/april15$ xtime  ./april15
+		Command terminated by signal 9
+		0.00u 0.00s 0.00r 368kB ./april15
+		
+		This is Ubuntu AMD64 with 16 Gig physical RAM - and 10 Gig Swap Area
+		Monitor shows 14.7 Gig RAM free before starting april15
+		So it's not a resource constraint.  Some kind of config issue?
+		ulimits look good.  GO Compiler is generating a 64 bit ELF.
+		What else is there to look at?  
+		Is there 2 GB RAM/process limit in GO itself?
+		Is it per process or per goroutine or ???
+*/
+
+package main
+
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
+
+const (
+	MAX_SSN =  1000*1000*1000		// Normal USA SSN has 1e+9 entries possible
+	verbose = false
+	DELAY = 0
+)
+
+//var taxpayerW2 [MAX_SSN]uint8  // number of W2s submitted by taxpayer [0..255] is ok
+//
+var taxpayerW2 [MAX_SSN]uint16 // number of W2s submitted by taxpayer [0..65535] is ok
+var taxpayerW3 [MAX_SSN]uint16 // number of W2s submitted by taxpayer [0..65535] is ok
+//var taxpayerW4 [MAX_SSN]uint16 // number of W2s submitted by taxpayer [0..65535] is ok
+
+//var taxpayerW2 [MAX_SSN]uint32 // number of W2s submitted by taxpayer [0..4294967295] fails
+
+var (
+	RandW2Remaining int = 1e+7
+	DocumentsOnFile = RandW2Remaining
+)
+ 
+func GetRandW2() (w2 uint32, ok bool) {
+	if RandW2Remaining <= 0 { return 0, false }
+	RandW2Remaining--
+	return uint32(rand.Int63n(int64(MAX_SSN))), true
+}
+
+func init() {
+	fmt.Printf("april15.go initializing with %d element array\n",MAX_SSN)
+	for i:=0; i<MAX_SSN; i++ {
+	taxpayerW2[i] = 2
+	taxpayerW3[i] = 3
+//	taxpayerW4[i] = 4
+	
+	}
+}
+
+func main() {
+	fmt.Printf("april15.go starting\n")
+
+	num_taxpayerW2s := 0
+
+	for {					// read all the W2s	
+
+	ssn,ok := GetRandW2()
+		if !ok {
+			break
+		}
+		taxpayerW2[ssn]++
+	}
+
+	num_W2s := 0
+	var i int64
+	for i = 0; i < MAX_SSN; i++ {
+		w2ct := int(taxpayerW2[i])
+		if w2ct > 0 {
+			num_taxpayerW2s++
+			num_W2s += w2ct
+			if verbose {fmt.Printf("%d sent in %d W2s\n",i, w2ct)}
+		}
+	}
+	fmt.Printf("Total # of documents on record(%d)\n",DocumentsOnFile)
+	fmt.Printf("  W2s processed(%d)\n", num_W2s)
+	fmt.Printf("%d different people sent in W2s\n", num_taxpayerW2s)
+	fmt.Printf("april15.go finished\n")
+	time.Sleep(DELAY * time.Second)
+}

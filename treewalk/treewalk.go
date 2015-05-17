@@ -11,18 +11,24 @@ import (
 	"path/filepath"
 )
 
-func ls(path string, info os.FileInfo, err error) error {
+func ls(wpath string, info os.FileInfo, err error) error {
+	if info == nil {
+		fmt.Printf("no stat info available for %s\n", wpath)
+		return nil
+	}
 	if info.IsDir() {
 		// fmt.Printf("dir %s\n",path)
 	} else {
-		fmt.Printf("%s size(%d)\n", path, info.Size())
+		fmt.Printf("file %q size(%d)\n", wpath, info.Size())
 	}
 	return nil
 }
 
 func main() {
 	flag.Parse()
-	if flag.NArg() <= 0 { // do nothing
+	fmt.Printf("NArg = %d\n", flag.NArg())
+	if flag.NArg() < 1 {
+		fmt.Printf("quitting - nothing to do\n")
 	} else {
 		for i := 0; i < flag.NArg(); i++ {
 			filepath.Walk(flag.Arg(i), ls)

@@ -1,0 +1,67 @@
+// april15b.go
+
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+const (
+	MAX_SSN = 1000 * 1000 * 1000 // Normal USA SSN has 1e+9 entries possible
+	DELAY   = 20
+)
+
+
+var taxpayerW2 [MAX_SSN]uint8
+var taxpayerW3 [MAX_SSN]uint8
+var taxpayerW4 [MAX_SSN]uint8
+func main() {
+	fmt.Printf("april15.go initializing with %d element array(s)\n", MAX_SSN)
+	for i := 0; i < MAX_SSN; i++ {
+		taxpayerW2[i] = 2
+		taxpayerW3[i] = 3
+		taxpayerW4[i] = 4
+	}
+
+	fmt.Printf("april15.go finished\n")
+	time.Sleep(DELAY * time.Second)
+}
+
+/* 
+using single array with one billion elements each we got these results:
+---------------------------
+var taxpayerW2 [MAX_SSN]uint8 	// OK
+---------------------------
+var taxpayerW2 [MAX_SSN]uint16  // OK
+---------------------------
+var taxpayerW2 [MAX_SSN]uint32  // fails
+----------------------------
+two billion bytes allocated over two arrays is OK
+var taxpayerW2 [MAX_SSN]uint8
+var taxpayerW3 [MAX_SSN]uint8	
+---------------------------
+three billion bytes allocated over three arrays fails (AMD/64 with 16 Gig Physical RAM)
+fails with "Command terminated by signal 9"
+var taxpayerW2 [MAX_SSN]uint8
+var taxpayerW3 [MAX_SSN]uint8
+var taxpayerW4 [MAX_SSN]uint8		 // OK if declared but not used.  "Killed" if we actually use it
+---------------------------
+My Environment:  Ubuntu 11.04 / AMD64 (current patches) 
+	$ ulimit -a
+		max locked memory       (kbytes, -l) 64
+		max memory size         (kbytes, -m) unlimited
+		stack size              (kbytes, -s) 8192
+		max user processes              (-u) unlimited
+		virtual memory          (kbytes, -v) unlimited
+	
+	$ cat /proc/meminfo	
+		MemTotal:       16466584 kB
+		MemFree:        14757556 kB
+		Buffers:          173960 kB
+		Cached:           442712 kB
+		SwapCached:            0 kB
+		Active:           761292 kB
+
+
+*/

@@ -1,2 +1,4 @@
 *~
-
+*.marks
+/filter/output.lst
+/filter/x.lst

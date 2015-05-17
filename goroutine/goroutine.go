@@ -11,10 +11,13 @@ import (
 	"time"
 )
 
-const BigRunTime = 7
+const (
+	BigRunTime = 7
+	stress     = false // if set true be sure you have good CPU cooling -
+)
 
 func cpu_hog(n int) float64 {
-	var stress = false
+
 	if stress {
 		const BIG_NUMBER = 1E7
 		maxj := rand.Int31n(100)
@@ -49,7 +52,9 @@ func main() {
 		throttle <- 1
 		wg.Add(1)
 		go func(z int) {
-			fmt.Printf("goroutine[%d] started\n", z)
+			fmt.Printf("goroutine number[%d] started; %d are running now\n",
+				z, runtime.NumGoroutine())
+
 			rv := cpu_hog(z)
 			_ = <-throttle
 			wg.Done()

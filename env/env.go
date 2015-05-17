@@ -5,11 +5,21 @@ package main
 import (
 	"fmt"
 	"os"
+	"runtime"
+)
+
+var (
+	license = "env.go pkg (c) 2012 David Rook released under Simplified BSD License"
 )
 
 func main() {
+	tmp := os.Getenv("GOMAXPROCS")
+	fmt.Printf("%s\n", runtime.Version())
+	fmt.Printf("$DATENOW = %s\n", os.Getenv("DATENOW"))
+	fmt.Printf("ENV says GOMAXPROCS: :%s:\n", tmp)
+	fmt.Printf("runtime says MAXPROCS = %d\n", runtime.NumCPU())
 
-	tmp := os.Getenv("SHELL")
+	tmp = os.Getenv("SHELL")
 	if tmp != "" {
 		fmt.Printf("Shell in use is: %s\n", tmp)
 	} else {

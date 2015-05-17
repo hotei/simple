@@ -2,22 +2,57 @@
 # simple
 </center>
 
+ (c) David Rook 2012 - released under Simplified BSD 2-clause License
+
 ## OVERVIEW
 
 This project is a collection of simple go programs.  Each one
 should compile and run with Go 1.  If you're still using r60.3 or earlier 
 then it might or
 might not work without conversion.  They were useful to me when learning go and
-I still look at them when I need to refresh my memory on how certain things work.  If you
-have go installed they should build without problems.  If you don't then
+I still look at them when I need to refresh my memory on how certain things work.
+If you have go installed they should build without problems.  If you don't then
 they can still be copied into the go "playground" at golang.org for experimentation.
 
 The programs in alphabetic order:
 
-* after
-* env
-* goroutine
-* treewalk
+* after.go
+* april15c.go
+	* allocating very large blocks of RAM
+* bigInt.go rho.go
+	* calculate common divisors of large numbers
+* binaryEncode.go
+	* empty interface array
+* bugBounce.go
+	* interfaces
+* byteOrder go snip by Rob Pike
+* call.go, call_test.go
+	* build & run vs test
+* cgo.go
+	* currently failing - what changed? or was it wrong to start?
+	* demonstrate how to call a C program from go code
+* closure.go, closure2.go
+	* functions that return functions
+* debug.go
+	* variadic parameters
+	* attaching Printf methods to boolean variables
+* env.go, env_test.go
+* eval.go
+	* variable is a function
+* file.go
+    * read and write to text files
+* fileinfo.go
+	* build flags 
+	* syscall to get the "other" info about a file
+* filter.go, check.go
+	* gather args from keyboard 
+* freeport.go
+	* get OS to give you a free port number for server
+	* String() method
+* goroutine.go
+	* channel as throttle to limit resource consumption (CPU here) 
+	* waitgroup
+* treewalk.go
 
 
 ### Installation
