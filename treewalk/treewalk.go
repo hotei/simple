@@ -1,9 +1,6 @@
-// SimpleTreeWalk.go
+// treewalk.go (c) 2010 David Rook - released with Simplified BSD 2-clause Lincense
 
 // list the dir tree for each comand arg
-/* 
- * (c) 2010 David Rook
- */
 
 package main
 
@@ -12,10 +9,6 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-)
-
-var (
-	license = "treewalk.go (c) 2012 David Rook released under Simplified BSD License"
 )
 
 func ls(path string, info os.FileInfo, err error) error {

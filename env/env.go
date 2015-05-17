@@ -1,13 +1,10 @@
-// env.go
+// env.go (c) 2010 David Rook - released with Simplified BSD 2-clause Lincense
 
 package main
 
 import (
 	"fmt"
 	"os"
-)
-var (
-	license = "env.go pkg (c) 2012 David Rook released under Simplified BSD License"
 )
 
 func main() {

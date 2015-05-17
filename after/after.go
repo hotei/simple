@@ -1,5 +1,4 @@
-// after.go
-// (c) David Rook 2012 - released under Simplified BSD Licens - see file "after.md"
+// after.go (c) David Rook 2012 - released under Simplified BSD 2-clause License
 
 // do something inside loop, break out of loop after specified time
 package main
@@ -7,10 +6,6 @@ package main
 import (
 	"fmt"
 	"time"
-)
-
-var (
-	license = "after.go pkg (c) 2012 David Rook released under Simplified BSD License"
 )
 
 func main() {
@@ -28,7 +23,7 @@ L1:
 			break L1 // label required
 		default: // nothing
 		}
-		time.Sleep(3 * time.Second)		
+		time.Sleep(3 * time.Second)
 	}
 	fmt.Printf("Chime\n")
 }

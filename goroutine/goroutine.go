@@ -1,5 +1,4 @@
-// goroutine.go
-// (c) David Rook 2012 - released under Simplified BSD Licens - see file "doc.md"
+// goroutine.go (c) David Rook 2012 - released under Simplified BSD 2-clause License
 
 package main
 
@@ -11,6 +10,7 @@ import (
 	"sync"
 	"time"
 )
+
 const BigRunTime = 7
 
 func cpu_hog(n int) float64 {
@@ -32,16 +32,16 @@ func cpu_hog(n int) float64 {
 		time.Sleep(time.Duration(rand.Int31n(int32(BIG_TIME))) * time.Second)
 		return rand.Float64() * 100.0
 	}
-	return 0.0 // NOT-REACHED but go compiler requires it
+	return 0.0 // NOT-REACHED but go compiler requires it (OBE?)
 }
 
 func main() {
-	fmt.Printf("At start there are %d goroutines running\n", 
+	fmt.Printf("At start there are %d goroutines running\n",
 		runtime.NumGoroutine())
 	NUM_CPUS := runtime.NumCPU()
 	loops_to_do := NUM_CPUS * 5
-	estTime := (BigRunTime*loops_to_do)/NUM_CPUS
-	fmt.Printf("est runtime %d to %d seconds...\n",estTime,estTime*2)	
+	estTime := (BigRunTime * loops_to_do) / NUM_CPUS
+	fmt.Printf("est runtime %d to %d seconds...\n", estTime, estTime*2)
 	throttle := make(chan int, NUM_CPUS)
 	fmt.Printf("starting %d goroutines in total\n", loops_to_do)
 	var wg sync.WaitGroup
@@ -56,9 +56,9 @@ func main() {
 			fmt.Printf("cpu_hog(%d) = %.2f\n", z, rv)
 		}(i)
 	}
-	fmt.Printf("%d new goroutines were started, %d are still running\n", 
+	fmt.Printf("%d new goroutines were started, %d are still running\n",
 		loops_to_do, runtime.NumGoroutine())
 	wg.Wait()
-	fmt.Printf("At finish there are %d goroutines running\n", 
+	fmt.Printf("At finish there are %d goroutines running\n",
 		runtime.NumGoroutine())
 }
