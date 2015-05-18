@@ -16,9 +16,10 @@ they can still be copied into the go "playground" at golang.org for experimentat
 
 The programs in alphabetic order:
 
-* after.go
+1. after.go
 * april15c.go
 	* allocating very large blocks of RAM
+	
 * bigInt.go rho.go
 	* calculate common divisors of large numbers
 * binaryEncode.go
@@ -34,6 +35,7 @@ The programs in alphabetic order:
 	* demonstrate how to call a C program from go code
 * closure.go, closure2.go
 	* functions that return functions
+	* see also static.go
 * debug.go
 	* variadic parameters
 	* attaching Printf methods to boolean variables
@@ -55,9 +57,17 @@ The programs in alphabetic order:
 * freeport.go
 	* get OS to give you a free port number for server
 	* String() method
+* funcParm.go, funcParm_test.go
+	* using functions as parameters to functions
 * goroutine.go
 	* channel as throttle to limit resource consumption (CPU here)
 	* waitgroup
+* ifAddr.go
+	* list the network interfaces available to the program
+* interface
+	* demonstrate functions that take multiple types as arguments
+* inventory.go
+	* trivial inventory example (poor example) 
 * json.go
 	* 
 * letterCount.go
@@ -65,26 +75,61 @@ The programs in alphabetic order:
 	* returns an array of ints
 * log.go
 	* illustrate some gotchas
-* md5.go
+* map.go
+	* map inquiry with and without exist test
+	* remove an element of a map using delete
+	* how to sort map keys
+* md5.go, md5File.go (not built)
 	* example of how hash and crypto/md5 work together
+* memAvail.go
+	* reads /proc/meminfo - not that useful
 * memoize.go
 	* replace a function with one that memorizes previous results
 	* can sometimes speed up results dramatically
-* pause.go
+* pause.go, readInput.go
 	* raw mode tty input
 	* exec.Command(...
 	* several examples - some raw tty, some not
+* pipe.go
+	* goroutines to read and write
+	* sleep
+* queue.go
+	* typical ops for queue data structure
+* random.go
+	* floating random values
 * range.go
 	* range examples
 	* empty return parameters
 	* array initializer syntax
 * re2.go
 	* collection pattern matching works
+* runCmd.go
+	* execute system level commands
+	* output of commands retained in local buffer
+* sha256.go
+	* sha256 of buffer or file
+* shuffle.go
+	* introduce disorder into an array
+* sleeper.go
+	* rand - random number generator
+	* goroutine - anon func
+	* goroutine - named func
+	* select with timeout limit
+* socket contains LocalSocket.go, UnixSocket.go
+	* trivial client server examples
 * sorter.go
 	* custom sort for Ant AI challenge
+* stack.go
+	* push/pop stack data structure
+* stardate.go
+	* print date as decimal year
+	* example with multiple command line flags 
+* static.go, see also closure.go
+* struct.go
+	* examples of initialization - could be improved
 * tar.go
+* ticker.go - time.Tick(duration) demo
 * treewalk.go
-
 
 ### Installation
 
@@ -117,7 +162,7 @@ License
 The programs contained within the "hotei/simple" github project are released with the 
 following Simplified BSD License:
 
-> Copyright (c) 2012-2015 David Rook. All rights reserved.
+> Copyright (c) 2010-2015 David Rook. All rights reserved.
 > 
 > Redistribution and use in source and binary forms, with or without modification, are
 > permitted provided that the following conditions are met:

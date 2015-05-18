@@ -1,5 +1,4 @@
-
-all:
+# makefile for simple directory
 
 neat:
 	go fmt ./...
@@ -9,3 +8,4 @@ world:
 
 clean:
 	go clean ./...
+	find . -type f -name "*~" -delete
