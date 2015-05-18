@@ -2,7 +2,7 @@
 # simple
 </center>
 
- (c) David Rook 2012 - released under Simplified BSD 2-clause License
+ (c) David Rook 2010 - released under Simplified BSD 2-clause License
 
 ## OVERVIEW
 
@@ -25,7 +25,8 @@ The programs in alphabetic order:
 	* empty interface array
 * bugBounce.go
 	* interfaces
-* byteOrder go snip by Rob Pike
+* byteOrder.txt is a go snip by Rob Pike
+	* simple slice to int conversions, Big&Little endian examples
 * call.go, call_test.go
 	* build & run vs test
 * cgo.go
@@ -45,13 +46,43 @@ The programs in alphabetic order:
 	* build flags 
 	* syscall to get the "other" info about a file
 * filter.go, check.go
-	* gather args from keyboard 
+	* gather args from keyboard
+* flags.go
+	* get arguments from command line
+	* doesn't process the flags at all - need to expand it a bit +++
+* fourteen.go - 14 bit floating point - not mine
+	* originally done for some specialized hardware I believe 
 * freeport.go
 	* get OS to give you a free port number for server
 	* String() method
 * goroutine.go
-	* channel as throttle to limit resource consumption (CPU here) 
+	* channel as throttle to limit resource consumption (CPU here)
 	* waitgroup
+* json.go
+	* 
+* letterCount.go
+	* count occurrences of letters in a buffer
+	* returns an array of ints
+* log.go
+	* illustrate some gotchas
+* md5.go
+	* example of how hash and crypto/md5 work together
+* memoize.go
+	* replace a function with one that memorizes previous results
+	* can sometimes speed up results dramatically
+* pause.go
+	* raw mode tty input
+	* exec.Command(...
+	* several examples - some raw tty, some not
+* range.go
+	* range examples
+	* empty return parameters
+	* array initializer syntax
+* re2.go
+	* collection pattern matching works
+* sorter.go
+	* custom sort for Ant AI challenge
+* tar.go
 * treewalk.go
 
 

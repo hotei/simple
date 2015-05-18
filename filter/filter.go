@@ -1,4 +1,4 @@
-// filter.go
+// filter.go (c) David Rook 2010 - released under Simplified BSD 2-clause License
 
 // This is supposed to gather stdin into a []string slice
 // then copy the slice to a file named output.lst

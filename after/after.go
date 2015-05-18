@@ -1,4 +1,4 @@
-// after.go (c) David Rook 2012 - released under Simplified BSD 2-clause License
+// after.go (c) David Rook 2010 - released under Simplified BSD 2-clause License
 
 // do something inside loop, break out of loop after specified time
 package main

@@ -1,4 +1,4 @@
-// closure.go (c) David Rook 2012 - released under Simplified BSD 2-clause License
+// closure.go (c) David Rook 2010 - released under Simplified BSD 2-clause License
 
 // +build ignore
 

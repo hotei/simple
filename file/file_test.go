@@ -1,4 +1,4 @@
-// file_test.go (c) David Rook 2012 - released under Simplified BSD 2-clause License
+// file_test.go (c) David Rook 2010 - released under Simplified BSD 2-clause License
 
 /*
  NOTE there are no t.Errorf calls here.  If any function calls os.Exit()

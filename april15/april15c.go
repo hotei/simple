@@ -1,4 +1,4 @@
-// april15c.go (c) David Rook 2012 - released under Simplified BSD 2-clause License
+// april15c.go (c) David Rook 2010 - released under Simplified BSD 2-clause License
 
 // NOTE: the executable is april15, not april15c
 
