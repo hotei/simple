@@ -33,6 +33,8 @@ The programs in alphabetic order:
 * cgo.go
 	* currently failing - what changed? or was it wrong to start?
 	* demonstrate how to call a C program from go code
+* channelTest.go
+	* using chan to alternate between to goroutines "without locks"
 * closure.go, closure2.go
 	* functions that return functions
 	* see also static.go
@@ -86,10 +88,13 @@ The programs in alphabetic order:
 * memoize.go
 	* replace a function with one that memorizes previous results
 	* can sometimes speed up results dramatically
+* nested.go by Jesse McNelis 
+	* ip address checked _before_ serving	
 * pause.go, readInput.go
 	* raw mode tty input
 	* exec.Command(...
 	* several examples - some raw tty, some not
+* pi.go - calculate some digits of pi - not really working - too few digits 
 * pipe.go
 	* goroutines to read and write
 	* sleep
@@ -103,9 +108,16 @@ The programs in alphabetic order:
 	* array initializer syntax
 * re2.go
 	* collection pattern matching works
+* readRandom.go
+	* reads from random number source
+* rpc
+	* tiny client server demo with RPC
 * runCmd.go
 	* execute system level commands
 	* output of commands retained in local buffer
+* scrypt scrypter.go
+	* how to use crypto/scrypt
+	* compare blocks using bytes.Compare()
 * sha256.go
 	* sha256 of buffer or file
 * shuffle.go
@@ -130,7 +142,10 @@ The programs in alphabetic order:
 * tar.go
 * ticker.go - time.Tick(duration) demo
 * treewalk.go
-
+* twoDArray
+	* initialize a two-D array
+* web-passwd.go
+	* borrowed password checker
 ### Installation
 
 Since there are multiple subdirectories the easiest installation is 
